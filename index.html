@@ -3,70 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bazaart Image Share</title>
+<title>Image Display</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
-    body {
-        font-family: Arial, sans-serif;
+    body, html {
         margin: 0;
         padding: 0;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+    }
+    .header {
+        position: fixed;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 10px 20px;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color-scheme: light dark;
+        justify-content: space-between;
+        z-index: 2;
     }
-    .container {
+    .header {
+        padding: 10px; /* Ensure enough space around content but within viewport */
+        box-sizing: border-box; /* Makes padding part of the width calculation */
+    }
+
+    .header {
+        top: 0;
+        justify-content: flex-end;
+    }
+    .content {
+        width: 100%;
+        height: 100%;
         display: flex;
-        flex-direction: column;
-        align-items: center;
         justify-content: center;
-        max-width: 80%;
-        max-height: 90vh;
-        margin: 20px;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
     }
-    @media (min-width: 768px) {
-        .container {
-            flex-direction: row;
-            max-width: 70%;
-            padding: 20px;
-        }
-        .content {
-            flex: 1;
-            margin-right: 20px; /* Padding between image and button */
-        }
-    }
-    img {
+    .content img {
         max-width: 100%;
         max-height: 100%;
         object-fit: contain;
-        border-radius: 10pt;
     }
     .btn {
         background-color: #FF0560;
         color: white;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 50px;
+        padding: 12px 16px;
+        border-radius: 20px;
         font-size: 12pt;
         font-weight: 600;
-        margin-top: 20px; /* Ensures padding on smaller screens */
-    }
-    @media (prefers-color-scheme: dark) {
-        .btn {
-            background-color: #ED2B6F;
-        }
-    }
+        text-decoration: none;
+        border: none;
+        font-family: Arial, sans-serif;
+        font-weight: 600;
+  }
+  .btn-fullscreen {
+      color: white;
+      background: none;
+      font-size: 20px; /* Adjust icon size */
+      cursor: pointer;
+      border: none; /* Removes any border */
+      outline: none; /* Removes the focus outline */
+  }
 </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="content">
-        <img src="https://marketplace.canva.com/EAE7Eq-VbcY/1/0/800w/canva-happy-birthday-Kjp1AImNLKI.jpg" alt="Happy Birthday">
-    </div>
+<div class="header">
     <a href="bazaart://share/id" class="btn">Try Bazaart for Free</a>
 </div>
+
+<div class="content">
+    <img src="https://via.placeholder.com/600x1200" alt="Placeholder Image">
+</div>
+
+<script src="https://kit.fontawesome.com/d0a96311b7.js" crossorigin="anonymous"></script>
+  
+<script>
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+        document.querySelector('.btn-fullscreen i').className = 'fa-solid fa-up-right-and-down-left-from-center';
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+            document.querySelector('.btn-fullscreen i').className = 'fa-solid fa-up-right-and-down-left-from-center';
+        }
+    }
+}
+</script>
 
 </body>
 </html>
